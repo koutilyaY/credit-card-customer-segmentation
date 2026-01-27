@@ -1,34 +1,58 @@
-# Credit Card Customer Segmentation Using K-Means
+# Credit Card Customer Segmentation Engine  
+**Unsupervised Machine Learning | Business Intelligence | 3D Analytics Dashboard**
 
 ## Overview
-This project implements an unsupervised machine learning pipeline to segment credit card customers based on financial and behavioral patterns. The system groups users into distinct segments using K-Means clustering and visualizes the results in an interactive 3D analytics dashboard.
+This project implements an end-to-end customer segmentation pipeline for credit card users using unsupervised machine learning. It clusters customers into meaningful behavioral segments based on financial activity and visualizes the results through an interactive 3D analytics dashboard. The system is designed to support data-driven decision-making in marketing, risk management, and customer strategy teams.
 
 ## Business Problem
-Financial institutions need to better understand customer spending behavior to improve marketing effectiveness, optimize credit risk strategies, and design personalized financial products. Manual segmentation is inefficient at scale, making machine learning-driven clustering essential for data-driven decision-making.
+Financial institutions manage millions of customers with diverse spending and credit usage patterns. Traditional rule-based segmentation fails to scale and adapt to evolving customer behavior. This project addresses that challenge by using machine learning to automatically discover behavioral groups, enabling:
+- Targeted marketing and personalized offers  
+- Identification of high-value and low-engagement customers  
+- Portfolio optimization and credit strategy support  
+- Customer retention and lifecycle management  
 
 ## Dataset
-The dataset contains anonymized credit card customer information, including balance amounts, purchasing behavior, credit limits, and payment patterns.
+**CC GENERAL Dataset**  
+The dataset contains anonymized credit card customer records with behavioral and financial attributes such as balances, purchases, credit limits, payment history, and tenure.
 
-**Source:** CC GENERAL Dataset  
-**Records:** ~9,000 customers  
-**Format:** CSV
+- Format: CSV  
+- Records: ~9,000 customers  
+- Granularity: One row per customer  
 
-## Features Used
-- BALANCE  
-- PURCHASES  
-- CREDIT_LIMIT  
+## Feature Engineering
+Clustering is performed using the following core financial behavior features:
+- `BALANCE` – Average outstanding balance  
+- `PURCHASES` – Total purchase amount  
+- `CREDIT_LIMIT` – Assigned credit limit  
 
-These features capture core customer financial behavior for segmentation.
+Additional features are used for post-clustering business profiling:
+- `PAYMENTS`  
+- `TENURE`  
 
-## Methodology
-1. Data loading and inspection  
-2. Missing value handling  
-3. Feature scaling using MinMaxScaler  
-4. K-Means clustering (k = 5)  
-5. Customer segment labeling  
-6. 3D visualization of clusters using Plotly  
+## Architecture & Workflow
+1. Data ingestion and inspection  
+2. Missing value handling and data cleaning  
+3. Feature scaling using MinMax normalization  
+4. Optimal cluster selection using Elbow Method and Silhouette Score  
+5. K-Means model training and customer segmentation  
+6. Business segment profiling and automated segment naming  
+7. Interactive 3D visualization dashboard  
+8. Model and scaler persistence for production deployment  
 
-## Results
-The model identifies five distinct customer segments representing different financial behavior patterns such as high-value users, moderate spenders, and low-engagement customers. These insights can support targeted campaigns and portfolio optimization strategies.
+## Machine Learning Approach
+- Algorithm: K-Means Clustering  
+- Learning Type: Unsupervised Learning  
+- Validation Techniques:
+  - Elbow Method (WCSS optimization)
+  - Silhouette Score (cluster separation quality)
+
+The final model assigns each customer to a behavioral segment based on similarity in financial activity patterns.
+
+## Output
+- Customer-level segment labels  
+- Business-readable segment summary table  
+- Executive summary report (customer distribution by segment)  
+- Interactive 3D visualization dashboard  
+- Serialized model and scaler for deployment  
 
 
