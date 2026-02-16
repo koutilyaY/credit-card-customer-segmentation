@@ -29,15 +29,32 @@ Additional features are used for post-clustering business profiling:
 - `PAYMENTS`  
 - `TENURE`  
 
-## Architecture & Workflow
-1. Data ingestion and inspection  
-2. Missing value handling and data cleaning  
-3. Feature scaling using MinMax normalization  
-4. Optimal cluster selection using Elbow Method and Silhouette Score  
-5. K-Means model training and customer segmentation  
-6. Business segment profiling and automated segment naming  
-7. Interactive 3D visualization dashboard  
-8. Model and scaler persistence for production deployment  
+flowchart TB
+  subgraph Sources[Sources]
+    S1[(Orders CSV)]
+    S2[(Customers CSV)]
+    S3[(Products CSV)]
+  end
+
+  subgraph Pipeline[ML Segmentation Pipeline]
+    P1[Ingest & Inspect] --> P2[Clean Missing Values]
+    P2 --> P3[MinMax Scaling]
+    P3 --> P4[Choose K<br/>(Elbow + Silhouette)]
+    P4 --> P5[Train K-Means]
+    P5 --> P6[Profile Segments<br/>+ Auto Naming]
+  end
+
+  subgraph Outputs[Outputs]
+    O1[[3D Dashboard]]
+    O2[[Saved Artifacts<br/>(scaler.pkl, kmeans.pkl)]]
+    O3[[Segmented Dataset<br/>(customer_id, segment)]]
+  end
+
+  Sources --> P1
+  P6 --> O1
+  P6 --> O3
+  P5 --> O2
+
 
 ## Machine Learning Approach
 - Algorithm: K-Means Clustering  
