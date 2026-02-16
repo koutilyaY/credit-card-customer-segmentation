@@ -29,31 +29,36 @@ Additional features are used for post-clustering business profiling:
 - `PAYMENTS`  
 - `TENURE`  
 
-flowchart TB
-  subgraph Sources[Sources]
-    S1[(Orders CSV)]
-    S2[(Customers CSV)]
-    S3[(Products CSV)]
+flowchart LR
+  %% ======================
+  %% Customer Segmentation — Architecture & Workflow
+  %% ======================
+
+  subgraph S1[Data Intake]
+    A[1. Data ingestion & inspection<br/>(CSV / DB / API)] --> B[2. Missing value handling<br/>& data cleaning]
   end
 
-  subgraph Pipeline[ML Segmentation Pipeline]
-    P1[Ingest & Inspect] --> P2[Clean Missing Values]
-    P2 --> P3[MinMax Scaling]
-    P3 --> P4[Choose K<br/>(Elbow + Silhouette)]
-    P4 --> P5[Train K-Means]
-    P5 --> P6[Profile Segments<br/>+ Auto Naming]
+  subgraph S2[Feature Engineering]
+    B --> C[3. Feature scaling<br/>(MinMax normalization)]
   end
 
-  subgraph Outputs[Outputs]
-    O1[[3D Dashboard]]
-    O2[[Saved Artifacts<br/>(scaler.pkl, kmeans.pkl)]]
-    O3[[Segmented Dataset<br/>(customer_id, segment)]]
+  subgraph S3[Modeling]
+    C --> D[4. Optimal cluster selection<br/>(Elbow + Silhouette)]
+    D --> E[5. K-Means training<br/>& customer segmentation]
   end
 
-  Sources --> P1
-  P6 --> O1
-  P6 --> O3
-  P5 --> O2
+  subgraph S4[Business Layer]
+    E --> F[6. Segment profiling<br/>& automated segment naming]
+  end
+
+  subgraph S5[Analytics & Delivery]
+    F --> G[7. Interactive 3D visualization<br/>(dashboard)]
+    F --> H[8. Persist model & scaler<br/>(production-ready artifacts)]
+  end
+
+  H --> I[Deployment / Reuse<br/>(batch scoring or API)]
+  I -. feedback loop .-> A
+
 
 
 ## Machine Learning Approach
