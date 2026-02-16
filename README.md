@@ -29,42 +29,43 @@ Additional features are used for post-clustering business profiling:
 - `PAYMENTS`  
 - `TENURE`  
 
-Raw Customer Data (CSV / DB / API)
-            |
-            ▼
-   Data Ingestion & Inspection
-            |
-            ▼
- Missing Value Handling
-     + Data Cleaning
-            |
-            ▼
- Feature Scaling
+## 📊 Customer Segmentation ML Pipeline Architecture
+
+```
+Customer Data Sources
+ (CSV / Database / API)
+          |
+          ▼
+ Data Ingestion & Inspection
+          |
+          ▼
+ Data Cleaning Pipeline
+ (Missing Value Handling)
+          |
+          ▼
+ Feature Engineering
  (MinMax Normalization)
-            |
-            ▼
- Optimal Cluster Selection
- (Elbow Method + Silhouette Score)
-            |
-            ▼
- K-Means Model Training
-  + Customer Segmentation
-            |
-            ▼
- Business Segment Profiling
- + Automated Segment Naming
-            |
-            ▼
- Interactive 3D Visualization
-        Dashboard
-            |
-            ▼
- Model & Scaler Persistence
-   (Saved for Production)
-
-
-
-
+          |
+          ▼
+ Cluster Optimization Engine
+ (Elbow + Silhouette Analysis)
+          |
+          ▼
+ ML Training Layer
+ (K-Means Segmentation)
+          |
+          ▼
+ Business Intelligence Layer
+ (Segment Profiling + Auto Naming)
+          |
+          ▼
+ Visualization Layer
+ (Interactive 3D Dashboard)
+          |
+          ▼
+ Production Artifacts
+ (Saved Model + Scaler)
+```
 
 ## Machine Learning Approach
 - Algorithm: K-Means Clustering  
