@@ -29,35 +29,40 @@ Additional features are used for post-clustering business profiling:
 - `PAYMENTS`  
 - `TENURE`  
 
-flowchart LR
-  %% ======================
-  %% Customer Segmentation — Architecture & Workflow
-  %% ======================
+Customer Data Sources
+ (CSV / Database / API)
+          |
+          ▼
+ Data Ingestion & Inspection
+          |
+          ▼
+ Data Cleaning Pipeline
+ (Missing Value Handling)
+          |
+          ▼
+ Feature Engineering
+ (MinMax Normalization)
+          |
+          ▼
+ Cluster Optimization Engine
+ (Elbow + Silhouette Analysis)
+          |
+          ▼
+ ML Training Layer
+ (K-Means Segmentation)
+          |
+          ▼
+ Business Intelligence Layer
+ (Segment Profiling + Auto Naming)
+          |
+          ▼
+ Visualization Layer
+ (Interactive 3D Dashboard)
+          |
+          ▼
+ Production Artifacts
+ (Saved Model + Scaler)
 
-  subgraph S1[Data Intake]
-    A[1. Data ingestion & inspection<br/>(CSV / DB / API)] --> B[2. Missing value handling<br/>& data cleaning]
-  end
-
-  subgraph S2[Feature Engineering]
-    B --> C[3. Feature scaling<br/>(MinMax normalization)]
-  end
-
-  subgraph S3[Modeling]
-    C --> D[4. Optimal cluster selection<br/>(Elbow + Silhouette)]
-    D --> E[5. K-Means training<br/>& customer segmentation]
-  end
-
-  subgraph S4[Business Layer]
-    E --> F[6. Segment profiling<br/>& automated segment naming]
-  end
-
-  subgraph S5[Analytics & Delivery]
-    F --> G[7. Interactive 3D visualization<br/>(dashboard)]
-    F --> H[8. Persist model & scaler<br/>(production-ready artifacts)]
-  end
-
-  H --> I[Deployment / Reuse<br/>(batch scoring or API)]
-  I -. feedback loop .-> A
 
 
 
